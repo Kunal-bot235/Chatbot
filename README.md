@@ -1,76 +1,67 @@
-Overview
+📌 Overview
 
-This project is a web scraper built using Selenium and BeautifulSoup to extract documentation content from multiple sources. The scraped data is saved in a text file for further analysis or processing.
+This project is an AI-powered chatbot that uses Google Gemini AI and FAISS to provide intelligent responses based on scraped documentation data. The chatbot loads text from a file, indexes it using embeddings, and allows users to query it for answers.
 
-Features
+🌟 Features
 
-Uses Selenium for dynamic content loading.
+✔️ Conversational AI powered by Google Gemini AI.✔️ Efficient document retrieval with FAISS vector search.✔️ Real-time Q&A based on extracted documentation.✔️ Simple command-line interaction for easy usage.✔️ Logs errors and processes for debugging.
 
-Parses and extracts text content with BeautifulSoup.
+🔧 Requirements
 
-Saves extracted content into scraped_docs.txt.
+Ensure you have the following dependencies installed:
 
-Supports multiple documentation websites.
+pip install selenium beautifulsoup4 webdriver-manager langchain langchain-google-genai faiss-cpu
 
-Handles tables, links, and various heading levels.
+🚀 Quick Start
 
-Requirements
-
-Make sure you have the following dependencies installed:
-
-pip install selenium beautifulsoup4 webdriver-manager
-
-Setup
-
-Clone this repository:
+1️⃣ Clone the repository:
 
 git clone https://github.com/Kunal-bot235/Chatbot.git
 cd Chatbot
 
-Install dependencies:
+2️⃣ Install dependencies:
 
 pip install -r requirements.txt
 
-Run the scraper:
+3️⃣ Run the chatbot:
 
-python main.py
+python chatbot.py
 
-Configuration
+⚙️ Configuration
 
-The scraper visits a list of documentation sites, defined in the base_urls list inside main.py. You can modify or add more URLs as needed:
+The chatbot reads from a text file (scraped_docs.txt) and initializes a FAISS vector store with Google Gemini AI embeddings. Ensure the file path is correctly set in GeminiQABot initialization:
 
-base_urls = [
-    "https://docs.zeotap.com/home/en-us/",
-    "https://docs.lytics.com/",
-    "https://docs.mparticle.com/",
-    "https://segment.com/docs/?ref=nav"
-]
+bot = GeminiQABot(
+    file_path="scraped_docs.txt",
+    google_api_key="YOUR_GOOGLE_API_KEY"
+)
 
-Output
+Replace YOUR_GOOGLE_API_KEY with a valid API key from Google.
 
-The scraped content is saved in scraped_docs.txt. The file contains:
+🎯 How It Works
 
-Extracted text from headings, paragraphs, lists, and links.
+1️⃣ Loads text from scraped_docs.txt and splits it into chunks.2️⃣ Generates embeddings using Google Generative AI.3️⃣ Stores embeddings in a FAISS vector database.4️⃣ Uses retrieval-based question answering to respond to user queries.
 
-Table contents formatted with tab spacing.
+📝 Example Usage
 
-Sections clearly separated by the source URL.
+Ask a question (type 'exit' to quit): What is Lytics?
+Answer: Lytics is a customer data platform that...
+Source: Lytics Documentation
 
-Notes
+❗ Troubleshooting
 
-The script includes a 5-second delay to allow JavaScript elements to load before scraping.
+If you encounter Google API key errors, ensure your API key is valid and set correctly in the environment variables.
 
-If a website has rate-limiting, adjust time.sleep(3) between requests.
-
-Issues
-
-If you encounter issues with large files, consider using Git Large File Storage (LFS):
+If you get large file errors, consider using Git Large File Storage (LFS):
 
 git lfs track "*.txt"
 git add .gitattributes scraped_docs.txt
 git commit -m "Enable LFS for large files"
 
-License
 
-This project is licensed under the MIT License. Feel free to use and modify it as needed.
+🤖 Enjoy chatting with Gemini AI! 🚀
+
+
+
+
 
